@@ -1,0 +1,28 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "008BA063-9",
+    "build_number": 9,
+    "build_time": 1601217042323,
+    "release": true
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/logo.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "PaddleOcr",
+  "optimization": {
+    "removeOpenCv": true,
+    "unusedResources": true
+  },
+  "packageName": "com.yunxi.OCR",
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.1"
+}
