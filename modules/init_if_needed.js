@@ -6,8 +6,14 @@
  * @Description: 免费版专用
  */
 module.exports = function (runtime, scope) {
+
   if (context.getPackageName() !== 'org.autojs.autojspro') {
-    var modules = ["$zip", "$base64", "$crypto", "$power_manager"]
+    // requireCommonModules([])
+  } else {
+    requireCommonModules(["fake_selector"])
+  }
+
+  function requireCommonModules(modules) {
     var len = modules.length
     for (var i = 0; i < len; i++) {
       var m = modules[i]
@@ -17,4 +23,5 @@ module.exports = function (runtime, scope) {
       }
     }
   }
+
 }

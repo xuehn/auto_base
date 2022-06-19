@@ -1,11 +1,4 @@
-/*
- * @Author: TonyJiangWJ
- * @Date: 2020-04-26 16:19:37
- * @Last Modified by: TonyJiangWJ
- * @Last Modified time: 2020-09-15 22:16:20
- * @Description: 
- */
-let { config: _config } = require('../config.js')(runtime, this)
+let { config: _config } = require('../config.js')(runtime, global)
 module.exports = function (obj) {
   this.__proto__ = obj
 

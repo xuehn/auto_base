@@ -2,12 +2,12 @@
  * @Author: TonyJiangWJ
  * @Date: 2020-11-20 16:55:08
  * @Last Modified by: TonyJiangWJ
- * @Last Modified time: 2020-12-18 15:51:28
+ * @Last Modified time: 2021-01-10 11:36:41
  * @Description: 
  */
 
-let { config } = require('../config.js')(runtime, this)
-let sRequire = require('../lib/SingletonRequirer.js')(runtime, this)
+let { config } = require('../config.js')(runtime, global)
+let sRequire = require('../lib/SingletonRequirer.js')(runtime, global)
 let { debugInfo, warnInfo, errorInfo, infoLog, logInfo, debugForDev } = sRequire('LogUtils')
 let commonFunction = sRequire('CommonFunction')
 let offset = config.bang_offset
