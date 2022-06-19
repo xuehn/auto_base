@@ -74,18 +74,7 @@ let default_config = {
   // 控制台最大日志长度，仅免费版有用
   console_log_maximum_size: 1500,
   enable_call_state_control: false,
-  collect_self_only: false,
-  not_collect_self: false,
-  // 当有收集或者帮助后 重新检查排行榜
-  recheck_rank_list: true,
-  // 是否基于图像分析是否到达底部
-  checkBottomBaseImg: true,
-  // 基于图像分析时 在好友排行榜下拉的次数，因为无法辨别是否已经达到了最低点
-  friendListScrollTime: 30,
-  // 基于像素点个数判断是否可收取，默认关闭
-  check_finger_by_pixels_amount: false,
-  // 可收取小手指绿色像素点个数，1080P分辨率是这个数值，其他分辨率请自己修改	
-  finger_img_pixels: 1900,
+
   thread_pool_size: 4,
   thread_pool_max_size: 8,
   thread_pool_queue_size: 16,
@@ -104,14 +93,7 @@ let default_config = {
   useCustomScrollDown: false,
   // 排行榜列表下滑速度 200毫秒 不要太低否则滑动不生效 仅仅针对useCustomScrollDown=true的情况
   scrollDownSpeed: 200,
-  // 是否开启自动浇水 每日收集某个好友达到下一个阈值之后会进行浇水
-  wateringBack: true,
-  // 浇水阈值40克
-  wateringThreshold: 40,
-  // 浇水数量
-  targetWateringAmount: 10,
-  // 配置不浇水的黑名单
-  wateringBlackList: [],
+
   // 延迟启动时延 5秒 悬浮窗中进行的倒计时时间
   delayStartTime: 5,
   // 是否使用百度的ocr识别倒计时
@@ -130,113 +112,37 @@ let default_config = {
   my_id: '',
   rain_start_content: '再来一次|立即开启',
   rain_end_content: '.*去蚂蚁森林看看.*',
-  send_chance_to_friend: '',
-  timeout_rain_find_friend: 3000,
-  rain_click_top: 400,
-  rain_click_gap: null,
-  rain_press_duration: 7,
-  suspend_on_alarm_clock: false,
-  suspend_alarm_content: '滑动关闭闹钟',
-  delay_start_pay_code_content: '向商家付(钱|款)',
-  home_ui_content: '查看更多动态.*',
-  friend_home_check_regex: '你收取TA|TA收取你',
-  friend_name_getting_regex: '(.*)的蚂蚁森林',
-  // 废弃
-  friend_list_ui_content: '(周|总)排行榜',
-  // 用于判断是否在好友排行榜
-  friend_list_id: '.*react-content.*',
-  // 查看更多好友的按钮
-  enter_friend_list_ui_content: '查看更多好友',
-  no_more_ui_content: '没有更多了',
-  load_more_ui_content: '查看更多',
-  watering_widget_content: '浇水',
-  do_watering_button_content: '送给\\s*TA|浇水送祝福',
-  friend_load_more_content: '点击展开好友动态',
-  using_protect_content: '使用了保护罩',
-  collectable_energy_ball_content: '收集能量\\d+克',
-  can_collect_color_lower: '#12905F',
-  can_collect_color_upper: '#2EA178',
-  // 配置帮助收取能量球的颜色，用于查找帮助收取的能量球
-  collectable_lower: '#89d600',
-  collectable_upper: '#ffff14',
-  water_lower: '#caa50e',
-  water_upper: '#ffede2',
-  // 排行榜校验区域
-  rank_check_left: 190,
-  rank_check_top: 170,
-  rank_check_width: 750,
-  rank_check_height: 200,
-  // 能量球所在范围
-  auto_detect_tree_collect_region: true,
-  tree_collect_left: 150,
-  tree_collect_top: 550,
-  tree_collect_width: 800,
-  tree_collect_height: 350,
-  // 底部校验区域
-  bottom_check_left: 600,
-  bottom_check_top: 2045,
-  bottom_check_width: 30,
-  bottom_check_height: 20,
-  bottom_check_gray_color: '#999999',
+
   // 设备分辨率宽高
   device_width: device.width,
   device_height: device.height,
-  // 尝试全局点击收集能量，能量球控件无法获取时使用 默认开启
-  try_collect_by_multi_touch: false,
-  // 跳过好友浇水能量球
-  skip_own_watering_ball: false,
-  hough_param1: 30,
-  hough_param2: 30,
-  hough_min_radius: null,
-  hough_max_radius: null,
-  hough_min_dst: null,
-  // 使用双击卡
-  double_click_card_used: false,
   // 是否是AutoJS Pro  需要屏蔽部分功能，暂时无法实现：生命周期监听等 包括通话监听
   is_pro: is_pro,
-  // 尝试先逛一逛进行能量收取
-  try_collect_by_stroll: true,
-  // 逛一逛结束是否进行能量雨收集
-  collect_rain_when_stroll: true,
-  disable_image_based_collect: false,
-  force_disable_image_based_collect: false,
-  stroll_end_ui_content: '^返回(我的|蚂蚁)森林>?|去蚂蚁森林.*$',
-  collect_by_stroll_only: false,
-  stroll_button_regenerate: true,
-  stroll_button_left: null,
-  stroll_button_top: null,
-  stroll_button_width: null,
-  stroll_button_height: null,
-  auto_set_bang_offset: true,
-  bang_offset: 0,
-  limit_runnable_time_range: true,
+
   // 当以下包正在前台运行时，延迟执行
   skip_running_packages: [],
   warn_skipped_ignore_package: false,
   warn_skipped_too_much: false,
   enable_visual_helper: false,
   auto_restart_when_crashed: true,
-  thread_name_prefix: 'antforest_',
+  thread_name_prefix: 'autoBase',
   package_name: 'com.eg.android.AlipayGphone',
   auto_check_update: true,
-  github_url: 'https://github.com/TonyJiangWJ/Ant-Forest',
-  gitee_url: 'https://gitee.com/TonyJiangWJ/Ant-Forest',
-  qq_group: '524611323',
+  github_url: 'https://github.com/xuehn/auto_base',
+  gitee_url: 'https://gitee.com/xuehn/auto_base',
+  qq_group: '1306712695',
   qq_group_url: 'https://jq.qq.com/?_wv=1027&k=uYq7S3hr',
-  github_latest_url: 'https://api.github.com/repos/TonyJiangWJ/Ant-Forest/releases/latest',
-  gitee_relase_url: 'https://gitee.com/api/v5/repos/TonyJiangWJ/Ant-Forest/releases/latest',
-  history_tag_url: 'https://api.github.com/repos/TonyJiangWJ/Ant-Forest/tags',
-  gitee_package_prefix: 'Ant-Forest-',
-  gitee_package_url: 'https://gitee.com/TonyJiangWJ/Ant-Forest/raw/release_pkgs/',
+  github_latest_url: 'https://api.github.com/repos/xuehn/auto_base/releases/latest',
+  gitee_relase_url: 'https://gitee.com/api/v5/repos/xuehn/auto_base/releases/latest',
+  history_tag_url: 'https://api.github.com/repos/xuehh/auto_base/tags',
+  gitee_package_prefix: 'auto_base-',
+  gitee_package_url: 'https://gitee.com/xuehn/auto_base/raw/release_pkgs/',
   release_access_token: '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',
   enable_watering_cooperation: false,
   watering_cooperation_name: '',
   watering_cooperation_amount: '',
   watering_cooperation_threshold: '',
-  // 能量雨设置
-  rain_collect_debug_mode: false,
-  rain_collect_duration: 18,
-  auto_start_rain: false,
+
   // 设置无障碍权限时开启其他的无障碍权限
   other_accessisibility_services: '',
   // 不需要执行resolver
