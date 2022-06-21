@@ -8,48 +8,8 @@ let Index = {
           link: '/basic/lock'
         },
         {
-          title: '能量雨设置',
-          link: '/basic/rain'
-        },
-        {
-          title: '收集设置',
-          link: '/basic/collect'
-        },
-        {
-          title: '多账号管理',
-          link: '/advance/accounts'
-        },
-        {
-          title: '刷步数',
-          link: '/advance/walkingData'
-        },
-        {
-          title: '收集统计',
-          link: '/view/collectSummary'
-        },
-        {
           title: '图像识别相关设置',
           link: '/advance/region'
-        },
-        {
-          title: '查找图片设置',
-          link: '/advance/imageConfig'
-        },
-        {
-          title: '控件文本设置',
-          link: '/content_widget_config'
-        },
-        {
-          title: '好友保护罩使用记录',
-          link: '/advance/protect'
-        },
-        {
-          title: '白名单设置',
-          link: '/advance/white'
-        },
-        {
-          title: '浇水回馈设置',
-          link: '/advance/water'
         },
         {
           title: '悬浮窗设置',
@@ -72,12 +32,12 @@ let Index = {
           link: '/about'
         },
         {
-          title: '常见问题',
-          link: '/QA'
-        },
-        {
           title: '脚本说明README',
           link: '/readme'
+        },
+        {
+            title: '[测试统计]',
+            link: '/view/collectSummary'
         },
       ]
     }

@@ -11,8 +11,8 @@ let is_pro = !!Object.prototype.toString.call(com.stardust.autojs.core.timing.Ti
 let default_config = {
   unlock_device_flag: 'normal',
   password: '',
-  is_alipay_locked: false,
-  alipay_lock_password: '',
+  is_alipay_locked: false,//应用是否锁定
+  alipay_lock_password: '',//应用锁手势密码
   color_offset: 20,
   // 是否显示状态栏的悬浮窗，避免遮挡，悬浮窗位置可以通过后两项配置修改 min_floaty_x[y]
   show_small_floaty: true,
@@ -118,6 +118,16 @@ let default_config = {
   device_height: device.height,
   // 是否是AutoJS Pro  需要屏蔽部分功能，暂时无法实现：生命周期监听等 包括通话监听
   is_pro: is_pro,
+
+  collect_by_stroll_only: false,
+  stroll_button_regenerate: true,
+  stroll_button_left: null,
+  stroll_button_top: null,
+  stroll_button_width: null,
+  stroll_button_height: null,
+  auto_set_bang_offset: true,
+  bang_offset: 0,
+  limit_runnable_time_range: true,
 
   // 当以下包正在前台运行时，延迟执行
   skip_running_packages: [],
@@ -315,10 +325,10 @@ function resetConfigsIfNeeded () {
     storageConfig.put('friend_home_check_regex', default_config.friend_home_check_regex)
   }
   let resetFields = [
-    'collectable_lower',
-    'collectable_upper',
-    'water_lower',
-    'water_upper',
+    // 'collectable_lower',
+    // 'collectable_upper',
+    // 'water_lower',
+    // 'water_upper',
     'gitee_package_url',
   ]
   if (config.updated_temp_flag_13654) {

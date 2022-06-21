@@ -63,7 +63,7 @@ const LockConfig = {
       <number-field v-model="configs.timeout_unlock" label="解锁超时时间" placeholder="请输入解锁超时时间">
         <template #right-icon><span>毫秒</span></template>
       </number-field>
-      <switch-cell title="支付宝是否锁定" v-model="configs.is_alipay_locked" />
+      <switch-cell title="应用是否锁定" v-model="configs.is_alipay_locked" />
       <van-field v-if="configs.is_alipay_locked" v-model="configs.alipay_lock_password" label="手势密码" placeholder="请输入手势密码对应的九宫格数字" type="password" input-align="right" />
       <switch-cell title="锁屏启动设置最低亮度" v-model="configs.auto_set_brightness" />
       <switch-cell title="锁屏启动关闭弹窗提示" v-model="configs.dismiss_dialog_if_locked" />
