@@ -1,4 +1,4 @@
-let Index = {
+let IndexConfig = {
   mixins: [mixin_methods],
   data: function () {
     return {
@@ -49,6 +49,35 @@ let Index = {
     }
   },
   template: `<div>
+    <van-cell-group>
+      <van-cell :title="item.title" is-link v-for="item in menuItems" :key="item.link" @click="routerTo(item)"/>
+    </van-cell-group>
+  </div>`
+}
+
+
+let IndexBusiness = {
+    mixins: [mixin_methods],
+    data: function () {
+        return {
+            menuItems: [
+                {
+                    title: '采集',
+                    link: '/business/caiji'
+                },{
+                    title: '高级配置',
+                    link: '/index/config'
+                }
+            ]
+        }
+    },
+    methods: {
+        routerTo: function (item) {
+            this.$router.push(item.link)
+            this.$store.commit('setTitleWithPath', { title: item.title, path: item.link })
+        }
+    },
+    template: `<div>
     <van-cell-group>
       <van-cell :title="item.title" is-link v-for="item in menuItems" :key="item.link" @click="routerTo(item)"/>
     </van-cell-group>

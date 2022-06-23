@@ -14,6 +14,8 @@ const loadJsList = [
   './js/components/view/CollectChart.js',
   './js/components/view/DailyChart.js',
   './js/components/Index.js',
+  //业务相关
+  './js/components/configurationBusiness/caiji.js',
 ]
 /**
  * 需要顺序加载的

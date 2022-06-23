@@ -110,8 +110,6 @@ let default_config = {
   // 秘钥
   secretKey: '',
   my_id: '',
-  rain_start_content: '再来一次|立即开启',
-  rain_end_content: '.*去蚂蚁森林看看.*',
 
   // 设备分辨率宽高
   device_width: device.width,
@@ -163,32 +161,28 @@ let default_config = {
   updated_temp_flag_13549: true,
   updated_temp_flag_13510: true,
   updated_temp_flag_13654: true,
-  // 多账号管理
-  accounts: [],
-  main_account: '',
-  main_userid: '',
-  main_account_username: '',
-  watering_main_at: 'collect',
-  watering_main_account: true,
-  to_main_by_user_id: true,
-  enable_multi_account: false,
-  // 刷步数
-  walking_accounts: [],
-  pushplus_token: '',
-  pushplus_walking_data: true,
   // 配置界面webview打印日志
-  webview_loging: false
+  webview_loging: false,
+  test2: '654321'
 }
+
+//业务配置
+let business_config = {
+  test: '123456'
+}
+
 // 文件更新后直接生效，不使用缓存的值
 let no_cache_configs = ['release_access_token']
-let securityFields = ['password', 'alipay_lock_password', 'walking_accounts']
-let objFields = ['walking_accounts']
-let CONFIG_STORAGE_NAME = 'ant_forest_config_fork_version'
-let PROJECT_NAME = '蚂蚁森林能量收集'
+let securityFields = ['password'] //需解密的值
+let objFields = []
+let CONFIG_STORAGE_NAME = 'auto_base_config_fork_version'
+let PROJECT_NAME = '蓝调'
 let config = {}
 let storageConfig = storages.create(CONFIG_STORAGE_NAME)
 let AesUtil = require('./lib/AesUtil.js')
 let aesKey = device.getAndroidId()
+
+//载入默认配置
 Object.keys(default_config).forEach(key => {
   let storedVal = storageConfig.get(key)
   if (typeof storedVal !== 'undefined' && no_cache_configs.indexOf(key) < 0) {
@@ -196,10 +190,18 @@ Object.keys(default_config).forEach(key => {
   } else {
     config[key] = default_config[key]
   }
+});
+//载入业务配置
+Object.keys(business_config).forEach(key => {
+  let storedVal = storageConfig.get(key)
+  if (typeof storedVal !== 'undefined' && no_cache_configs.indexOf(key) < 0) {
+    config[key] = getConfigValue(storedVal, key)
+  } else {
+    config[key] = default_config[key]
+  }
 })
-if (typeof config.collectable_energy_ball_content !== 'string') {
-  config.collectable_energy_ball_content = default_config.collectable_energy_ball_content
-}
+
+//重新计算区域
 config.recalculateRegion = () => {
   if (config.device_height > 10 && config.device_width > 10) {
     if (config.bottom_check_top > config.device_height || config.bottom_check_top <= 0) {
@@ -251,13 +253,14 @@ config.overwrite = (key, value) => {
   console.verbose('覆写配置', storage_name, key)
   storages.create(storage_name).put(key, value)
 }
+
 // 扩展配置
-let workpath = getCurrentWorkPath()
+/*let workpath = getCurrentWorkPath()
 let configDataPath = workpath + '/config_data/'
 let default_image_config = {};
 ['reward_for_plant', 'backpack_icon', 'sign_reward_icon'].forEach(key => default_image_config[key] = files.read(configDataPath + key + '.data'))
 default_config.image_config = default_image_config
-config.image_config = convertDefaultData(default_image_config, CONFIG_STORAGE_NAME + '_image')
+config.image_config = convertDefaultData(default_image_config, CONFIG_STORAGE_NAME + '_image')*/
 
 resetConfigsIfNeeded()
 if (!isRunningMode) {
@@ -282,6 +285,7 @@ if (!isRunningMode) {
       scope.config_instance = {
         config: config,
         default_config: default_config,
+        business_config: business_config,
         storage_name: CONFIG_STORAGE_NAME,
         securityFields: securityFields,
         project_name: PROJECT_NAME
@@ -320,15 +324,7 @@ if (!isRunningMode) {
  * 脚本更新后自动恢复一些不太稳定的配置
  */
 function resetConfigsIfNeeded () {
-  if (config.friend_home_check_regex === '浇水') {
-    config.friend_home_check_regex = default_config.friend_home_check_regex
-    storageConfig.put('friend_home_check_regex', default_config.friend_home_check_regex)
-  }
   let resetFields = [
-    // 'collectable_lower',
-    // 'collectable_upper',
-    // 'water_lower',
-    // 'water_upper',
     'gitee_package_url',
   ]
   if (config.updated_temp_flag_13654) {
@@ -347,14 +343,15 @@ function resetConfigsIfNeeded () {
   }
 }
 
-function convertDefaultData (default_config, config_storage_name) {
+//扩展配置
+/*function convertDefaultData (default_config, config_storage_name) {
   let config_storage = storages.create(config_storage_name)
   let configData = {}
   Object.keys(default_config).forEach(key => {
     configData[key] = config_storage.get(key, default_config[key])
   })
   return configData
-}
+}*/
 
 function getCurrentWorkPath () {
   let currentPath = files.cwd()

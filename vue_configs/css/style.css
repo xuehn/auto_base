@@ -102,7 +102,7 @@
   left: -75px;
   bottom: 0;
   right: 0;
-  background: url(../images/肌肉doge.png) no-repeat;
+  background: url(../images/蓝调.jpg) no-repeat;
   background-size: cover;
   pointer-events: none;
   mask: linear-gradient(110deg, #000 10%, transparent 70%, transparent);
@@ -173,4 +173,13 @@ body {
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  line-height: var(--footer-height);
+  background: #14c4ff;
+  color: #fff;
 }

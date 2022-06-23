@@ -2,7 +2,7 @@ const store = new Vuex.Store({
   state: {
     configSaveCallbacks: [],
     currentIndex: 0,
-    currentTitle: '配置管理',
+    currentTitle: '功能主页',
     titleMap: {}
   },
   getters: {
