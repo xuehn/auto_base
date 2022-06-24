@@ -11,7 +11,7 @@ let commonFunctions = singletonRequire('CommonFunction')
 commonFunctions.checkAnyReadyAndSleep()
 commonFunctions.delayIfBatteryLow()
 commonFunctions.exitIfCoolDown()
-// 不管其他脚本是否在运行 清除任务队列 适合只使用蚂蚁森林的用户
+// 不管其他脚本是否在运行 清除任务队列 适合只使用单脚本的用户
 if (config.single_script) {
   logInfo('======单脚本运行直接清空任务队列=======')
   runningQueueDispatcher.clearAll()

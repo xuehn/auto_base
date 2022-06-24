@@ -12,7 +12,7 @@ let automator = singletonRequire('Automator')
 let _commonFunctions = singletonRequire('CommonFunction')
 let _runningQueueDispatcher = singletonRequire('RunningQueueDispatcher')
 let alipayUnlocker = singletonRequire('AlipayUnlocker')
-let AntForestDao = singletonRequire('AntForestDao')
+// let AntForestDao = singletonRequire('AntForestDao')
 let FloatyInstance = singletonRequire('FloatyUtil')
 let OpenCvUtil = require('../lib/OpenCvUtil.js')
 let callStateListener = !_config.is_pro && _config.enable_call_state_control ? singletonRequire('CallStateListener')
@@ -22,8 +22,8 @@ let callStateListener = !_config.is_pro && _config.enable_call_state_control ? s
         }, disableListener: () => {
         }
     }
-let StrollScanner = require('./StrollScanner.js')
-let ImgBasedFriendListScanner = require('./ImgBasedFriendListScanner.js')
+// let StrollScanner = require('./StrollScanner.js')
+// let ImgBasedFriendListScanner = require('./ImgBasedFriendListScanner.js')
 let BaseScanner = require('./BaseScanner.js')
 
 function MainRunner() {
@@ -42,28 +42,28 @@ function MainRunner() {
 
         // 打开应用
     const startApp = function () {
-            toastLog('假装打开应用~')
+        toastLog('假装打开应用~')
         sleep(1000)
-            toastLog('test：'+_config.test)
-            sleep(1000)
-            toastLog('test2：'+_config.test)
-            sleep(1000)
-            /*app.startActivity({
-                action: 'VIEW',
-                data: 'alipays://platformapi/startapp?appId=60000002',
-                packageName: _config.package_name
-            })
-            FloatyInstance.setFloatyInfo({x: _config.device_width / 2, y: _config.device_height / 2}, "查找是否有'打开'对话框")
-            let confirm = _widgetUtils.widgetGetOne(/^打开$/, 1000)
-            if (confirm) {
-                automator.clickCenter(confirm)
-            }
-            _commonFunctions.readyForAlipayWidgets()
-            if (_config.is_alipay_locked) {
-                sleep(1000)
-                alipayUnlocker.unlockAlipay()
-            }*/
+        toastLog('test：'+_config.test)
+        sleep(1000)
+        toastLog('test2：'+_config.test)
+        sleep(1000)
+        /*app.startActivity({
+            action: 'VIEW',
+            data: 'alipays://platformapi/startapp?appId=60000002',
+            packageName: _config.package_name
+        })
+        FloatyInstance.setFloatyInfo({x: _config.device_width / 2, y: _config.device_height / 2}, "查找是否有'打开'对话框")
+        let confirm = _widgetUtils.widgetGetOne(/^打开$/, 1000)
+        if (confirm) {
+            automator.clickCenter(confirm)
         }
+        _commonFunctions.readyForAlipayWidgets()
+        if (_config.is_alipay_locked) {
+            sleep(1000)
+            alipayUnlocker.unlockAlipay()
+        }*/
+    }
 
 
     /**
@@ -106,46 +106,39 @@ function MainRunner() {
     const showFloaty = function (text) {
         _commonFunctions.closeFloatyWindow()
         let window = floaty.window(
-            < card
-        cardBackgroundColor = "#aa000000"
-        cardCornerRadius = "20dp" >
-            < horizontal
-        w = "250"
-        h = "40"
-        paddingLeft = "15"
-        gravity = "center" >
-            < text
-        id = "log"
-        w = "180"
-        h = "30"
-        textSize = "12dp"
-        textColor = "#ffffff"
-        layout_gravity = "center"
-        gravity = "left|center"
-            / >
-            < card
-        id = "stop"
-        w = "30"
-        h = "30"
-        cardBackgroundColor = "#fafafa"
-        cardCornerRadius = "15dp"
-        layout_gravity = "right|center"
-        paddingRight = "-15"
+            <card cardBackgroundColor="#aa000000" cardCornerRadius="20dp">
+            <horizontal w="250" h="40" paddingLeft="15" gravity="center">
+            <text
+        id="log"
+        w="180"
+        h="30"
+        textSize="12dp"
+        textColor="#ffffff"
+        layout_gravity="center"
+        gravity="left|center"
+            />
+            <card
+        id="stop"
+        w="30"
+        h="30"
+        cardBackgroundColor="#fafafa"
+        cardCornerRadius="15dp"
+        layout_gravity="right|center"
+        paddingRight="-15"
             >
-            < text
-        w = "30"
-        h = "30"
-        textSize = "16dp"
-        textColor = "#000000"
-        layout_gravity = "center"
-        gravity = "center"
+            <text
+        w="30"
+        h="30"
+        textSize="16dp"
+        textColor="#000000"
+        layout_gravity="center"
+        gravity="center"
             >
               ×
-    <
-        /text>
-        < /card>
-        < /horizontal>
-        < /card>
+    </text>
+        </card>
+        </horizontal>
+        </card>
     )
         window.stop.on('click', () => {
             _runningQueueDispatcher.removeRunningTask()
@@ -379,14 +372,12 @@ function MainRunner() {
                 //showCollectSummaryFloaty()
                 try {
                     openAndWaitForPersonalHome()
-                    //执行逻辑
-
+                    //TODO 执行逻辑
+                    //_config.business_last_run_business_type
                 } catch (e) {
                     errorInfo('发生异常 [' + e + ']')
                     _current_num = _current_num == 0 ? 0 : _current_num - 1
                     _commonFunctions.printExceptionStack(e)
-                    _has_next = true
-                    _re_try = 0
                 }
 
                 logInfo('========本轮结束========')
@@ -403,11 +394,11 @@ function MainRunner() {
     return {
         exec: function () {
             let executor = null
-            if (_config.is_cycle) {
+            // if (_config.is_cycle) {
                 executor = new CycleExecutor()
-            } else {
+            // } else {
                 //executor = new CountdownExecutor()
-            }
+            // }
             executor.execute()
         }
     }

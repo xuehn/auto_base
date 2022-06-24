@@ -19,6 +19,9 @@ let app = new Vue({
       false: true,
       showBack: this.$route.path != '/',
       showMenuDialog: false,
+      //上次执行的任务类型
+      business_last_run_business_type: '',
+      business_last_run_business_type_name: '',
     }
   },
   methods: {
@@ -80,6 +83,10 @@ let app = new Vue({
         }, 10)
       }
       this.registerResizeWindow()
+    },
+    mainRun: function () {
+        //沿用上次业务
+        $app.invoke('mainRun', {})
     }
   },
   computed: {
@@ -110,5 +117,11 @@ let app = new Vue({
     }, 1200)
     console.log('准备注册 resizeWindow ' + (typeof $app) + ' ' + (typeof $app.registerFunction) + ' is moke?' + $app.moke)
     this.delayRegisterIfBridgeNotReady()
+
+    //读取配置
+    window.$nativeApi.request('loadConfigs').then(config => {
+        this.business_last_run_business_type = config.business_last_run_business_type
+        this.business_last_run_business_type_name = config.business_last_run_business_type_name
+    })
   }
 })

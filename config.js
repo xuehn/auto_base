@@ -83,8 +83,8 @@ let default_config = {
   merge_countdown_by_gaps: false,
   countdown_gaps: 5,
   // 单脚本模式 是否只运行一个脚本 不会同时使用其他的 开启单脚本模式 会取消任务队列的功能。
-  // 比如同时使用蚂蚁庄园 则保持默认 false 否则设置为true 无视其他运行中的脚本
-  single_script: false,
+  // 比如同时使用多个需定时执行的autoJs任务 则保持默认 false 否则设置为true 无视其他运行中的脚本
+  single_script: true,
   // 这个用于控制列表滑动是否稳定 不用去修改它
   friendListStableCount: 3,
   // 滑动起始底部高度
@@ -162,12 +162,14 @@ let default_config = {
   updated_temp_flag_13510: true,
   updated_temp_flag_13654: true,
   // 配置界面webview打印日志
-  webview_loging: false,
-  test2: '654321'
+  webview_loging: false
 }
 
 //业务配置
 let business_config = {
+  //记录上次执行的任务类型
+  business_last_run_business_type: '',
+  business_last_run_business_type_name: '',
   test: '123456'
 }
 
@@ -197,7 +199,7 @@ Object.keys(business_config).forEach(key => {
   if (typeof storedVal !== 'undefined' && no_cache_configs.indexOf(key) < 0) {
     config[key] = getConfigValue(storedVal, key)
   } else {
-    config[key] = default_config[key]
+    config[key] = business_config[key]
   }
 })
 
