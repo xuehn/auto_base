@@ -22,6 +22,9 @@ let app = new Vue({
       //上次执行的任务类型
       business_last_run_business_type: '',
       business_last_run_business_type_name: '',
+      loading:{
+          isLoading: false,
+      }
     }
   },
   methods: {
@@ -85,6 +88,7 @@ let app = new Vue({
       this.registerResizeWindow()
     },
     mainRun: function () {
+        this.loading.isLoading = true;
         //沿用上次业务
         $app.invoke('mainRun', {})
     }

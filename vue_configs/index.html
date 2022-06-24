@@ -43,7 +43,7 @@
         </transition>
       </div>
     </div>
-    <van-button v-if="business_last_run_business_type != '' " class="footer" type="primary" block @click="mainRun">开始执行（{{business_last_run_business_type_name}}}）</van-button>
+    <van-button v-if="business_last_run_business_type != '' " class="footer" type="primary" block @click="mainRun" :loading="loading.isLoading">开始执行（{{business_last_run_business_type_name}}）</van-button>
 
     <van-dialog v-model="showMenuDialog" v-cloak title="菜单" :show-confirm-button="false" :close-on-click-overlay="true"
       :get-container="getDialogContainer">

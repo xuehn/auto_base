@@ -1,0 +1,2 @@
+#该文件配置的规则所匹配的文件，将不视为Auto.js Pro的JavaScript源码文件，不参与加密过程。
+/vue_configs/
